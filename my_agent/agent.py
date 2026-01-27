@@ -1,9 +1,21 @@
 from google.adk.agents.llm_agent import Agent
 from my_agent.tools.read_file import read_file
 from my_agent.tools.edit_file import edit_file
+from google.adk.tools.mcp_tool import MCPToolset
+from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams, StdioServerParameters
+# from mcp import StdioServerParameters
+
+mcp = MCPToolset(
+    connection_params=StdioConnectionParams(
+        server_params=StdioServerParameters(
+            command="python3",
+            args=["my_agent/mcp/server.py"]  # Full path to your MCP server
+        )
+    )
+)
 
 root_agent = Agent(
-    model='gemini-3-pro-preview',
+    model='gemini-2.5-pro',
     name='Code_Reviewer',
     description='You are an elite Senior Software Engineer and Code Quality Specialist. Your primary directive is to ingest source code, analyze it for structural and logical integrity, and execute precise edits to improve performance, readability, security, and maintainability without altering the core intended business logic. You balance strict adherence to industry standards (DRY, SOLID, OWASP) with the pragmatic constraints of the existing codebase.',
     instruction="""
@@ -42,7 +54,7 @@ root_agent = Agent(
 
             Imports: Clean up unused imports and organize them (Standard Lib > Third Party > Local).
     """,
-    tools=[read_file, edit_file]
+    tools=[mcp]
 )
 
 __all__ = [root_agent]

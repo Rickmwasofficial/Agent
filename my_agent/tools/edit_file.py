@@ -8,12 +8,14 @@ def edit_file(content: str):
     Edit this file with the content
     """
     lines = content.splitlines()
-    with path.open("w", encoding="utf-8') as f:
+    with path.open("w", encoding="utf-8") as f:
         for line in lines:
             f.write(line + "\n")
             f.flush()
-            time.sleep(0.1
-                      )
+            time.sleep(0.1)
+
+    new_content = path.read_text()
+
     return {
         "message": "Successful",
         "new_content": new_content
