@@ -1,16 +1,21 @@
 from pathlib import Path
 
-path = Path("./code_samples/code_1.py")
 
-def read_file(path_2: str):
+def read_file(path: str):
     """
     Read contents of the file
     """
-    content = path.read_text()
-    return {
-        "message": "Successful",
-        "content": content
-    }
+    file = Path(path)
+    try:
+        content = file.read_text()
+        return {
+            "message": "Successful",
+            "content": content
+        }
+    except Exception as e:
+        return {
+            "message": f"Not Successful. Error: {e}"
+        } 
     
 
 if __name__ == '__main__':
