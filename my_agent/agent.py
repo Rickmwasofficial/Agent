@@ -1,6 +1,9 @@
 from google.adk.agents.llm_agent import Agent
 from my_agent.tools.read_file import read_file
 from my_agent.tools.edit_file import edit_file
+from my_agent.tools.list_dirs import list_dirs
+from my_agent.tools.create_ops import create_path
+from my_agent.tools.delete_ops import delete_path
 
 root_agent = Agent(
     model='gemini-3-pro-preview',
@@ -42,7 +45,7 @@ root_agent = Agent(
 
             Imports: Clean up unused imports and organize them (Standard Lib > Third Party > Local).
     """,
-    tools=[read_file, edit_file]
+    tools=[list_dirs, read_file, edit_file, create_path, delete_path]
 )
 
 __all__ = [root_agent]
