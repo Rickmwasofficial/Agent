@@ -12,11 +12,11 @@ The core of the agent is defined in `my_agent/agent.py`. It uses the `gemini-3-p
 
 1.  Clone the repository:
     ```bash
-    git clone https://github.com/your-username/your-repository.git
+    git clone https://github.com/Rickmwasofficial/Agent.git
     ```
 2.  Navigate to the project directory:
     ```bash
-    cd your-repository
+    cd Agent
     ```
 3.  Create a virtual environment:
     ```bash
